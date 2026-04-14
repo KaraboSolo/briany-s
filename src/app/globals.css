@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #1D8FD8;
+  --color-brand-blue-dark: #1470b0;
+  --color-brand-green: #7DC242;
+  --color-brand-green-dark: #5fa030;
+  --color-navy: #0D2137;
+  --color-navy-light: #132d4a;
+  --color-slate: #2D3748;
+  --color-light: #F4F7FA;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #2D3748;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scroll margin for anchor links (accounts for sticky nav) */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+/* Counter animation */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-count {
+  animation: countUp 0.6s ease-out forwards;
+}
+
+/* Fade in up animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s ease-out forwards;
+}
+
+/* Stagger children */
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 100ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 200ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 300ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 400ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 500ms; }
