@@ -73,7 +73,7 @@ export default function Contact() {
     e.preventDefault();
     setLoading(true);
     try {
-      await fetch("/", {
+      await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode({ "form-name": "contact", ...form }),
@@ -92,15 +92,6 @@ export default function Contact() {
       className="bg-[#F4F7FA] py-20 lg:py-28"
       aria-labelledby="contact-heading"
     >
-      {/* Hidden Netlify form for bot detection */}
-      <form name="contact" data-netlify="true" hidden>
-        <input type="text" name="name" />
-        <input type="tel" name="phone" />
-        <input type="email" name="email" />
-        <select name="service" />
-        <textarea name="message" />
-      </form>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
@@ -201,7 +192,6 @@ export default function Contact() {
               <form
                 onSubmit={handleSubmit}
                 name="contact"
-                data-netlify="true"
                 className="bg-white rounded-2xl p-8 shadow-sm"
                 noValidate
               >
