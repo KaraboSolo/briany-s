@@ -31,7 +31,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-5">
               <Image
-                src="/images/logo.png"
+                src="/images/No Background Logo.png"
                 alt="Briany's Cleaning Services"
                 width={150}
                 height={65}

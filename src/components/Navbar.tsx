@@ -36,7 +36,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center flex-shrink-0">
             <Image
-              src="/images/logo.png"
+              src="/images/No Background Logo.png"
               alt="Briany's Cleaning Services Logo"
               width={160}
               height={70}
