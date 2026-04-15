@@ -1,26 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Phone, Mail, MapPin, Facebook, Instagram } from "lucide-react";
+import { areas } from "@/data/areas";
+import { locationServices } from "@/data/services";
 
 const quickLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
   { href: "/services", label: "Our Services" },
+  { href: "/areas", label: "Areas We Serve" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
 
-const services = [
-  { href: "/services#commercial", label: "Commercial Cleaning" },
-  { href: "/services#office-house", label: "Office & House Cleaning" },
-  { href: "/services#hotel-hall", label: "Hotel & Hall Cleaning" },
-  { href: "/services#event", label: "Pre & Post Event Cleaning" },
-  { href: "/services#carpet", label: "Carpet Cleaning" },
-  { href: "/services#contracts", label: "Regular Contracts" },
-];
-
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+
+  // Split areas into two columns
+  const areasMid = Math.ceil(areas.length / 2);
+  const areasCol1 = areas.slice(0, areasMid);
+  const areasCol2 = areas.slice(areasMid);
 
   return (
     <footer className="bg-[#0D2137] text-white" aria-label="Site footer">
@@ -65,12 +64,12 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2 — Quick Links */}
+          {/* Column 2 — Quick Links + Services */}
           <div>
             <h3 className="font-bold text-sm uppercase tracking-widest text-white/50 mb-5">
               Quick Links
             </h3>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-3 mb-8">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
@@ -82,25 +81,54 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
-
-          {/* Column 3 — Services */}
-          <div>
-            <h3 className="font-bold text-sm uppercase tracking-widest text-white/50 mb-5">
+            <h3 className="font-bold text-sm uppercase tracking-widest text-white/50 mb-4">
               Our Services
             </h3>
-            <ul className="flex flex-col gap-3">
-              {services.map((link) => (
-                <li key={link.href}>
+            <ul className="flex flex-col gap-2.5">
+              {locationServices.map((service) => (
+                <li key={service.slug}>
                   <Link
-                    href={link.href}
+                    href={`/areas/sandton/${service.slug}`}
                     className="text-white/70 hover:text-[#7DC242] text-sm transition-colors"
                   >
-                    {link.label}
+                    {service.name}
                   </Link>
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* Column 3 — Areas We Serve */}
+          <div>
+            <h3 className="font-bold text-sm uppercase tracking-widest text-white/50 mb-5">
+              Areas We Serve
+            </h3>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5">
+              {areasCol1.map((area) => (
+                <Link
+                  key={area.slug}
+                  href={`/areas/${area.slug}`}
+                  className="text-white/70 hover:text-[#7DC242] text-sm transition-colors"
+                >
+                  {area.name}
+                </Link>
+              ))}
+              {areasCol2.map((area) => (
+                <Link
+                  key={area.slug}
+                  href={`/areas/${area.slug}`}
+                  className="text-white/70 hover:text-[#7DC242] text-sm transition-colors"
+                >
+                  {area.name}
+                </Link>
+              ))}
+            </div>
+            <Link
+              href="/areas"
+              className="inline-block mt-4 text-[#7DC242] text-xs font-semibold hover:underline"
+            >
+              View all areas →
+            </Link>
           </div>
 
           {/* Column 4 — Contact */}
@@ -149,6 +177,39 @@ export default function Footer() {
               </div>
               <div className="text-sm text-white/40">Sunday: Closed</div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Area × Service links — SEO internal linking grid */}
+      <div className="border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <p className="text-white/30 text-xs uppercase tracking-widest font-semibold mb-6">
+            All Services by Area
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-4">
+            {areas.map((area) => (
+              <div key={area.slug}>
+                <Link
+                  href={`/areas/${area.slug}`}
+                  className="text-white/60 hover:text-[#7DC242] text-xs font-semibold transition-colors block mb-1.5"
+                >
+                  {area.name}
+                </Link>
+                <ul className="space-y-1">
+                  {locationServices.map((service) => (
+                    <li key={service.slug}>
+                      <Link
+                        href={`/areas/${area.slug}/${service.slug}`}
+                        className="text-white/30 hover:text-white/70 text-xs transition-colors leading-relaxed"
+                      >
+                        {service.shortName}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </div>
