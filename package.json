@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap && node -e \"require('fs').copyFileSync('public/__forms.html','.next/__forms.html'); console.log('Netlify forms file copied to .next/')\""
   },
   "dependencies": {
     "next": "^15.3.0",

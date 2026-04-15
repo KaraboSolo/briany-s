@@ -46,11 +46,6 @@ const serviceOptions = [
   "Other",
 ];
 
-function encode(data: Record<string, string>) {
-  return Object.keys(data)
-    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&");
-}
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -73,10 +68,13 @@ export default function Contact() {
     e.preventDefault();
     setLoading(true);
     try {
+      const data = new FormData(e.currentTarget);
+      const params = new URLSearchParams();
+      data.forEach((value, key) => params.append(key, value.toString()));
       await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode({ "form-name": "contact", ...form }),
+        body: params.toString(),
       });
       setSubmitted(true);
     } catch {
