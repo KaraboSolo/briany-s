@@ -34,7 +34,7 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
           {/* LEFT — Copy */}
-          <div className="order-2 lg:order-1">
+          <div className="order-1 lg:order-1">
             {/* Trust badge */}
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8">
               <Shield className="w-4 h-4 text-[#7DC242]" />
@@ -114,7 +114,7 @@ export default function Hero() {
           </div>
 
           {/* RIGHT — Image */}
-          <div className="order-1 lg:order-2 relative flex justify-center lg:justify-end">
+          <div className="order-2 lg:order-2 relative flex justify-center lg:justify-end">
             {/* Main image frame */}
             <div className="relative w-full max-w-md lg:max-w-none">
               {/* Decorative ring */}
