@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postbuild": "next-sitemap && node -e \"require('fs').copyFileSync('public/__forms.html','.next/__forms.html'); console.log('Netlify forms file copied to .next/')\""
+    "postbuild": "next-sitemap && node -e \"const fs=require('fs'); fs.copyFileSync('public/__forms.html','.next/__forms.html'); fs.copyFileSync('public/sitemap.xml','.next/sitemap.xml'); fs.copyFileSync('public/sitemap-0.xml','.next/sitemap-0.xml'); fs.copyFileSync('public/robots.txt','.next/robots.txt'); console.log('Netlify forms, sitemap, and robots.txt copied to .next/');\""
   },
   "dependencies": {
     "next": "^15.3.0",
