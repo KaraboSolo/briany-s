@@ -19,8 +19,8 @@ const contactDetails = [
   {
     icon: Mail,
     label: "Email",
-    value: "info@brianyscleaning.co.za",
-    href: "mailto:info@brianyscleaning.co.za",
+    value: "brianphephenyane136@gmail.com",
+    href: "mailto:brianphephenyane136@gmail.com",
   },
   {
     icon: MapPin,
